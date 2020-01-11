@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button } from "react-native";
+import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 
 export const AddTodo = ({ addTodo }) => {
   const [value, setValue] = useState('');
@@ -8,7 +8,7 @@ export const AddTodo = ({ addTodo }) => {
       addTodo(value);
       setValue('');
     } else{
-      // error
+      Alert.alert('Название дела не может быть пустым')
     }
   };
 
