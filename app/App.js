@@ -5,10 +5,10 @@ import { AddTodo } from "./src/components/AddTodo";
 import { Todo } from "./src/components/Todo";
 
 export default function App() {
-  const [todos, setTodos] = useState([]);  
+  const [todoList, setTodoList] = useState([]);
   
   const addTodo = (title) => {
-    setTodos(prev => [...prev, {
+    setTodoList(prev => [...prev, {
       id: Date.now().toString(),
       title,
     }])
@@ -20,7 +20,7 @@ export default function App() {
       <View style={styles.container}>
         <AddTodo addTodo={addTodo}/>
         <View>
-          {todos.map(todo => <Todo key={todo.id} todo={todo}/>)}
+          {todoList.map(todo => <Todo key={todo.id} todo={todo}/>)}
         </View>
       </View>
     </View>

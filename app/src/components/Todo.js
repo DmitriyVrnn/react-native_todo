@@ -9,13 +9,14 @@ export const Todo = ({ todo }) => {
   )
 };
 
+const $gray = '#eee';
 const styles = StyleSheet.create({
   todo: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 15,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: $gray,
     borderRadius: 5,
     marginBottom: 10
   }
