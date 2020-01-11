@@ -7,7 +7,7 @@ export const AddTodo = ({ addTodo }) => {
     if(value.trim()){
       addTodo(value);
       setValue('');
-    } else{
+    } else {
       Alert.alert('Название дела не может быть пустым')
     }
   };
@@ -17,7 +17,10 @@ export const AddTodo = ({ addTodo }) => {
       <TextInput style={styles.input} 
         onChangeText={setValue}
         value={value}
-        placeholder="Введите дело"/>
+        placeholder="Введите дело"
+        autoCorrect={false}
+        autoCapitalize="none"
+      />
       <Button title="Добавить" 
         style={styles.button} 
         onPress={pressHandler}/>
