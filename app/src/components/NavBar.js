@@ -3,16 +3,16 @@ import React from 'react';
 import { View, Text, StyleSheet } from "react-native";
 import {THEME} from "../theme";
 
-export const Navbar = ({ text }) => {
+export const NavBar = ({ text }) => {
   return(
-    <View style={styles.navbar}>
+    <View style={styles.navBar}>
       <Text style={styles.text}>{text}</Text>
     </View>
   )
 };
 
 const styles = StyleSheet.create({
-  navbar: {
+  navBar: {
     height: 70,
     alignItems: 'center',
     justifyContent: 'flex-end',
