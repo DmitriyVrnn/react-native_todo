@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Button, Modal, Alert } from "react-native";
+
 import { THEME } from "../theme";
 
 
@@ -13,7 +14,7 @@ export const EditModal = ({ visible, onCancel, value, onSave }) => {
     } else {
       onSave(title)
     }
-  }
+  };
 
   return (
     <Modal visible={visible} animationType='slide' transparent={false}>
@@ -39,13 +40,13 @@ const styles = StyleSheet.create({
   wrap: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   input: {
     padding: 10,
     borderBottomColor: THEME.MAIN_COLOR,
     borderBottomWidth: 2,
-    width: '80%'
+    width: '80%',
   },
   buttons: {
     width: '100%',
