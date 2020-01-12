@@ -4,14 +4,14 @@ import { AddTodo } from "../components/AddTodo";
 import { Todo } from "../components/Todo";
 
 
-export const MainScreen = ({addTodo, todoList, removeTodo, openTodo}) => {
+export const MainScreen = ({ addTodo, todoList, removeTodo, openTodo }) => {
   return (
     <View>
       <AddTodo addTodo={addTodo}/>
       <FlatList
         keyExtractor={item => item.id.toString()}
         data={todoList}
-        renderItem={({item}) =>
+        renderItem={({ item }) =>
           <Todo todo={item}
                 removeTodo={removeTodo}
                 onOpen={openTodo}
