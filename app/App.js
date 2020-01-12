@@ -19,10 +19,16 @@ export default function App() {
     setTodoList(prev => prev.filter(item => item.id !== id))
   };
   
-  let content = (<MainScreen todoList={todoList} addTodo={addTodo} removeTodo={removeTodo} />);
+  let content = (<MainScreen 
+    todoList={todoList} 
+    addTodo={addTodo} 
+    removeTodo={removeTodo} 
+    openTodo={setTodoId}
+  />);
   
-  if(todoId){
-    content = <TodoScreen/>
+  if(todoId) {
+    const selectedTodo = todoList.find(todo => todo.id === todoId);
+    content = <TodoScreen goBack={() => setTodoId(null)} todo={selectedTodo}/>
   }
   
   return (
