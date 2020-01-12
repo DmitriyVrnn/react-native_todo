@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { View, Text, StyleSheet } from "react-native";
-import {THEME} from "../theme";
+import { THEME } from "../theme";
 
-export const NavBar = ({ text }) => {
-  return(
+
+export const NavBar = ({text}) => {
+  return (
     <View style={styles.navBar}>
       <Text style={styles.text}>{text}</Text>
     </View>
