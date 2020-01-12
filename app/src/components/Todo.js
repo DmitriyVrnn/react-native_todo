@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import {THEME} from "../theme";
 
 export const Todo = ({ todo, removeTodo , onOpen}) => {
   const onRemoveHandler = () => {
@@ -18,15 +19,14 @@ export const Todo = ({ todo, removeTodo , onOpen}) => {
   )
 };
 
-const $gray = '#eee';
 const styles = StyleSheet.create({
   todo: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 15,
     borderWidth: 1,
-    borderColor: $gray,
+    borderColor: THEME.GRAY_COLOR,
     borderRadius: 5,
     marginBottom: 10
   }
-})
+});
