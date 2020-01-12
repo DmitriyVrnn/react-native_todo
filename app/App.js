@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
-import { Navbar } from "./src/components/Navbar";
+import { NavBar } from "./src/components/NavBar";
 import { MainScreen } from "./src/screens/MainScreen";
 import { TodoScreen } from "./src/screens/TodoScreen";
 
@@ -51,7 +51,7 @@ export default function App() {
   
   return (
     <View >
-      <Navbar text="Todo" />
+      <NavBar text="Todo" />
       <View style={styles.container}>
         {content}
       </View>
