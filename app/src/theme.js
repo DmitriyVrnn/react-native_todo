@@ -3,4 +3,5 @@ export const THEME = {
   GRAY_COLOR: '#757575',
   MAIN_COLOR: '#3949ab',
   WHITE_COLOR: '#fff',
+  PADDING_HORIZONTAL: 30,
 };
