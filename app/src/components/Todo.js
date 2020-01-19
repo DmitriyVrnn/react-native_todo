@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 import { THEME } from "../theme";
+import { AppTextRegular } from "./ui/AppTextRegular";
 
 
 export const Todo = ({todo, removeTodo, onOpen}) => {
@@ -15,7 +16,7 @@ export const Todo = ({todo, removeTodo, onOpen}) => {
       onPress={() => onOpen(todo.id)}
       onLongPress={onRemoveHandler}>
       <View style={styles.todo}>
-        <Text style={styles.title}>{todo.title}</Text>
+        <AppTextRegular style={styles.title}>{todo.title}</AppTextRegular>
       </View>
     </TouchableOpacity>
   )
@@ -31,7 +32,4 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10
   },
-  title: {
-    fontFamily: 'robotoBold'
-  }
 });

@@ -6,7 +6,6 @@ import { AppLoading } from "expo";
 import { NavBar } from "./src/components/NavBar";
 import { MainScreen } from "./src/screens/MainScreen";
 import { TodoScreen } from "./src/screens/TodoScreen";
-import isEmpty from "react-native-web/dist/vendor/react-native/isEmpty";
 
 
 const loadApp = async () => {
