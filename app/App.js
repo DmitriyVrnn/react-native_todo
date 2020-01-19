@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import * as Font from 'expo-font';
+import { AppLoading } from "expo";
 
 import { NavBar } from "./src/components/NavBar";
 import { MainScreen } from "./src/screens/MainScreen";
 import { TodoScreen } from "./src/screens/TodoScreen";
+import isEmpty from "react-native-web/dist/vendor/react-native/isEmpty";
 
 
 const loadApp = async () => {
@@ -16,8 +18,15 @@ const loadApp = async () => {
 
 
 export default function App() {
+  const [isReady, setIsReady] = useState(false);
   const [todoId, setTodoId] = useState(null);
   const [todoList, setTodoList] = useState([]);
+
+  if (!isReady) {
+    return <AppLoading startAsync={loadApp}
+                       onError={err => console.log(err)}
+                       onFinish={() => setIsReady(true)}/>
+  }
 
   const addTodo = (title) => {
     setTodoList(prev => [...prev, {
@@ -49,7 +58,7 @@ export default function App() {
 
   const updateTodo = (id, title) => {
     setTodoList(prev => prev.map(todo => {
-      if(todo.id === id){
+      if (todo.id === id) {
         todo.title = title;
       }
       return todo
