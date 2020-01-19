@@ -5,7 +5,7 @@ import { THEME } from "../theme";
 import { AppTextBold } from "./ui/AppTextBold";
 
 
-export const NavBar = ({text}) => {
+export const NavBar = ({ text }) => {
   return (
     <View style={styles.navBar}>
       <AppTextBold style={styles.text}>{text}</AppTextBold>
