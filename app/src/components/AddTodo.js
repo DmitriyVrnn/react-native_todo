@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
-import {THEME} from "../theme";
+import { AntDesign  } from '@expo/vector-icons';
+
+import { THEME } from "../theme";
+
 
 export const AddTodo = ({ addTodo }) => {
   const [value, setValue] = useState('');
   const pressHandler = () => {
-    if(value.trim()){
+    if (value.trim()) {
       addTodo(value);
       setValue('');
     } else {
@@ -13,18 +16,21 @@ export const AddTodo = ({ addTodo }) => {
     }
   };
 
-  return(
+  return (
     <View style={styles.wrapper}>
-      <TextInput style={styles.input} 
-        onChangeText={setValue}
-        value={value}
-        placeholder="Введите дело"
-        autoCorrect={false}
-        autoCapitalize="none"
+      <TextInput style={styles.input}
+                 onChangeText={setValue}
+                 value={value}
+                 placeholder="Введите дело"
+                 autoCorrect={false}
+                 autoCapitalize="none"
       />
-      <Button title="Добавить" 
-        style={styles.button} 
-        onPress={pressHandler}/>
+      <AntDesign.Button onPress={pressHandler} name="pluscircleo">
+        Добавить
+      </AntDesign.Button>
+      { /*<Button title="Добавить"
+              style={styles.button}
+              onPress={pressHandler}/>*/}
     </View>
   )
 };
@@ -37,13 +43,10 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   input: {
-    width: '70%',
+    width: '60%',
     padding: 10,
     borderStyle: 'solid',
     borderBottomWidth: 2,
     borderBottomColor: THEME.MAIN_COLOR
   },
-  button: {
-      
-  },
-})
+});
