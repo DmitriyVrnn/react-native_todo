@@ -25,7 +25,8 @@ export const AddTodo = ({ addTodo }) => {
                  autoCorrect={false}
                  autoCapitalize="none"
       />
-      <AntDesign.Button onPress={pressHandler} name="pluscircleo">
+      <AntDesign.Button onPress={pressHandler}
+                        name="pluscircleo">
         Добавить
       </AntDesign.Button>
       { /*<Button title="Добавить"
