@@ -2,13 +2,14 @@ import React, { useState, useContext } from 'react';
 import { View, StyleSheet, Dimensions } from "react-native";
 import { FontAwesome, AntDesign } from '@expo/vector-icons'
 
-import { THEME } from "../theme";
 import { AppCard } from "../components/ui/AppCard";
 import { EditModal } from "../components/EditModal";
 import { AppTextBold } from "../components/ui/AppTextBold";
 import { AppButton } from "../components/ui/AppButton";
 import { TodoContext } from "../context/todo/todoContext";
 import { ScreenContext } from "../context/screen/screenContext";
+
+import { THEME } from "../theme";
 
 
 export const TodoScreen = () => {
@@ -48,7 +49,7 @@ export const TodoScreen = () => {
             onPress={() => changeScreen(null)}
             color={THEME.GRAY_COLOR}
           >
-            <AntDesign name='back' size={20} color='#fff' />
+            <AntDesign name='back' size={20} color='#fff'/>
           </AppButton>
         </View>
         <View style={styles.button}>

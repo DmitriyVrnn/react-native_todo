@@ -4,7 +4,6 @@ import { AppLoading } from "expo";
 
 import { MainLayout } from "./src/layouts/MainLayout";
 import { TodoState } from "./src/context/todo/TodoState";
-import { TodoScreen } from "./src/screens/TodoScreen";
 import { ScreenState } from "./src/context/screen/ScreenState";
 
 
