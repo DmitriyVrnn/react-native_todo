@@ -8,18 +8,18 @@ import { TodoContext } from "../context/todo/todoContext";
 
 
 export const MainLayout = () => {
-  const todoContext = useContext(TodoContext);
+  const { todos, addTodo, removeTodo, updateTodo } = useContext(TodoContext);
   const [todoId, setTodoId] = useState(null);
   const [todoList, setTodoList] = useState([]);
 
-  const addTodo = (title) => {
+  /*const addTodo = (title) => {
     setTodoList(prev => [...prev, {
       id: Date.now().toString(),
       title,
     }])
-  };
+  };*/
 
-  const removeTodo = (id) => {
+  /*const removeTodo = (id) => {
     const selectedTodo = todoList.find(todo => todo.id === id);
     Alert.alert(
       'Удаление элемента',
@@ -38,19 +38,19 @@ export const MainLayout = () => {
       ],
       { cancelable: false },
     );
-  };
+  };*/
 
-  const updateTodo = (id, title) => {
+  /*const updateTodo = (id, title) => {
     setTodoList(prev => prev.map(todo => {
       if (todo.id === id) {
         todo.title = title;
       }
       return todo
     }))
-  };
+  };*/
 
   let content = (<MainScreen
-    todoList={todoContext.todos}
+    todoList={todos}
     addTodo={addTodo}
     removeTodo={removeTodo}
     openTodo={setTodoId}
