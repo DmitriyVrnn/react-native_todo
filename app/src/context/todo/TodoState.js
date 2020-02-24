@@ -9,6 +9,7 @@ import {
   ADD_TODO, CLEAR_ERROR, FETCH_TODOS, HIDE_LOADER, REMOVE_TODO, SHOW_ERROR, SHOW_LOADER, UPDATE_TODO
 } from "../types";
 import { REACT_APP_BASE_URL } from "../../../constants";
+import { Http } from "../../http";
 
 
 export const TodoState = ({ children }) => {
@@ -21,13 +22,13 @@ export const TodoState = ({ children }) => {
   const { changeScreen } = useContext(ScreenContext);
 
   const addTodo = async title => {
-    const response = await fetch(`${REACT_APP_BASE_URL}/todos.json`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title })
-    });
-    const data = await response.json();
-    dispatch({ type: ADD_TODO, title, id: data.name });
+    clearError();
+    try {
+      const data = Http.post(`${REACT_APP_BASE_URL}/todos.json`, { title });
+      dispatch({ type: ADD_TODO, title, id: data.name });
+    } catch {
+      showError('Something went wrong...')
+    }
   };
 
   const removeTodo = id => {
@@ -45,10 +46,7 @@ export const TodoState = ({ children }) => {
           style: 'destructive',
           onPress: async () => {
             changeScreen(null);
-            await fetch(`${REACT_APP_BASE_URL}/todos/${id}.json`, {
-              method: 'DELETE',
-              headers: { 'Content-Type': 'application/json' },
-            });
+            await Http.delete(`${REACT_APP_BASE_URL}/todos/${id}.json`);
             dispatch({ type: REMOVE_TODO, id });
           }
         },
@@ -61,11 +59,7 @@ export const TodoState = ({ children }) => {
     showLoader();
     clearError();
     try {
-      const response = await fetch(`${REACT_APP_BASE_URL}/todos.json`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const data = await response.json();
+      const data = await Http.get(`${REACT_APP_BASE_URL}/todos.json`);
       const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
       dispatch({ type: FETCH_TODOS, todos });
     } catch (e) {
@@ -79,11 +73,7 @@ export const TodoState = ({ children }) => {
   const updateTodo = async (id, title) => {
     clearError();
     try {
-      await fetch(`${REACT_APP_BASE_URL}/todos/${id}.json`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title })
-      });
+      await Http.patch(`${REACT_APP_BASE_URL}/todos/${id}.json`, { title });
       dispatch({ type: UPDATE_TODO, id, title });
     } catch (e) {
       showError('Something went wrong...')
