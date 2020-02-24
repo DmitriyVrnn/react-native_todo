@@ -6,6 +6,7 @@ import { AddTodo } from "../components/AddTodo";
 import { Todo } from "../components/Todo";
 import { TodoContext } from "../context/todo/todoContext";
 import { ScreenContext } from "../context/screen/screenContext";
+import { AppLoader } from "../components/ui/AppLoader";
 
 
 export const MainScreen = () => {
@@ -31,6 +32,10 @@ export const MainScreen = () => {
       Dimensions.removeEventListener('change', update)
     }
   });
+
+  if (loading) {
+    return <AppLoader/>
+  }
 
   let content = (
     <View style={{ width: deviceWidth }}>

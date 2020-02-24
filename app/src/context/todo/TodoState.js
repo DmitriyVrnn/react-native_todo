@@ -54,6 +54,7 @@ export const TodoState = ({ children }) => {
   };
 
   const fetchTodos = async () => {
+    showLoader();
     const response = await fetch(`${REACT_APP_BASE_URL}/todos.json`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -61,13 +62,14 @@ export const TodoState = ({ children }) => {
     const data = await response.json();
     const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
     dispatch({ type: FETCH_TODOS, todos })
+    hideLoader()
   };
 
   const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title });
 
   const showLoader = () => dispatch({ type: SHOW_LOADER });
 
-  const hideLoadr = () => dispatch({ type: HIDE_LOADER });
+  const hideLoader = () => dispatch({ type: HIDE_LOADER });
 
   const showError = (error) => dispatch({ type: SHOW_ERROR, error });
 
