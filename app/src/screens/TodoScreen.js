@@ -24,8 +24,8 @@ export const TodoScreen = () => {
     removeTodo(todo.id)
   };
 
-  const saveHandler = (title) => {
-    updateTodo(todo.id, title);
+  const saveHandler = async (title) => {
+    await updateTodo(todo.id, title);
     setModal(false);
   };
 

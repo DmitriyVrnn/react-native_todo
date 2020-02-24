@@ -65,14 +65,26 @@ export const TodoState = ({ children }) => {
       const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
       dispatch({ type: FETCH_TODOS, todos });
     } catch (e) {
-      showError('Something went wrong...')
+      showError('Something went wrong...');
       console.log(e)
     } finally {
       hideLoader()
     }
   };
 
-  const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title });
+  const updateTodo = async (id, title) => {
+    clearError();
+    try {
+      await fetch(`${REACT_APP_BASE_URL}/todos/${id}.json`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title })
+      });
+      dispatch({ type: UPDATE_TODO, id, title });
+    } catch (e) {
+      showError('Something went wrong...')
+    }
+  };
 
   const showLoader = () => dispatch({ type: SHOW_LOADER });
 
