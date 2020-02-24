@@ -7,6 +7,8 @@ import { Todo } from "../components/Todo";
 import { TodoContext } from "../context/todo/todoContext";
 import { ScreenContext } from "../context/screen/screenContext";
 import { AppLoader } from "../components/ui/AppLoader";
+import { AppTextBold } from "../components/ui/AppTextBold";
+import { AppButton } from "../components/ui/AppButton";
 
 
 export const MainScreen = () => {
@@ -35,6 +37,19 @@ export const MainScreen = () => {
 
   if (loading) {
     return <AppLoader/>
+  }
+
+  if (error) {
+    return (
+      <View style={styles.center}>
+        <AppTextBold style={styles.error}>
+          {error}
+        </AppTextBold>
+        <AppButton onPress={loadTodos}>
+          Repeat
+        </AppButton>
+      </View>
+    )
   }
 
   let content = (
@@ -80,5 +95,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: "contain",
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  error: {
+    fontSize: 20,
+    color: THEME.DANGER_COLOR,
   }
 });
