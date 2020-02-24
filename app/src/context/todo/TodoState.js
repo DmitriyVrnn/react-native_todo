@@ -5,7 +5,9 @@ import { TodoContext } from "./todoContext";
 import { todoReducer } from "./todoReducer";
 import { ScreenContext } from "../screen/screenContext";
 
-import { ADD_TODO, CLEAR_ERROR, HIDE_LOADER, REMOVE_TODO, SHOW_ERROR, SHOW_LOADER, UPDATE_TODO } from "../types";
+import {
+  ADD_TODO, CLEAR_ERROR, FETCH_TODOS, HIDE_LOADER, REMOVE_TODO, SHOW_ERROR, SHOW_LOADER, UPDATE_TODO
+} from "../types";
 import { REACT_APP_BASE_URL } from "../../../constants";
 
 
@@ -25,7 +27,6 @@ export const TodoState = ({ children }) => {
       body: JSON.stringify({ title })
     });
     const data = await response.json();
-    console.log(data)
     dispatch({ type: ADD_TODO, title, id: data.name });
   };
 
@@ -52,6 +53,16 @@ export const TodoState = ({ children }) => {
     );
   };
 
+  const fetchTodos = async () => {
+    const response = await fetch(`${REACT_APP_BASE_URL}/todos.json`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await response.json();
+    const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
+    dispatch({ type: FETCH_TODOS, todos })
+  };
+
   const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title });
 
   const showLoader = () => dispatch({ type: SHOW_LOADER });
@@ -66,9 +77,12 @@ export const TodoState = ({ children }) => {
     <TodoContext.Provider
       value={{
         todos: state.todos,
+        loading: state.loading,
+        error: state.error,
         addTodo,
         removeTodo,
-        updateTodo
+        updateTodo,
+        fetchTodos
       }}>{children}
     </TodoContext.Provider>
   )

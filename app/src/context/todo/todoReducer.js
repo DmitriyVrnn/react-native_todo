@@ -22,7 +22,7 @@ const handlers = {
   [HIDE_LOADER]: state => ({ ...state, loading: false }),
   [SHOW_ERROR]: (state, { error }) => ({ ...state, error }),
   [CLEAR_ERROR]: state => ({ ...state, error: null }),
-  [FETCH_TODOS]: (state, { todods }) => ({ ...state, todods }),
+  [FETCH_TODOS]: (state, { todos }) => ({ ...state, todos }),
   DEFAULT: state => state,
 };
 
