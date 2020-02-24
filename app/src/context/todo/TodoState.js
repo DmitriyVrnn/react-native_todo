@@ -43,8 +43,12 @@ export const TodoState = ({ children }) => {
         {
           text: 'Удалить',
           style: 'destructive',
-          onPress: () => {
+          onPress: async () => {
             changeScreen(null);
+            await fetch(`${REACT_APP_BASE_URL}/todos/${id}.json`, {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+            });
             dispatch({ type: REMOVE_TODO, id });
           }
         },
