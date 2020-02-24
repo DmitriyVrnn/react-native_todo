@@ -6,6 +6,7 @@ import { todoReducer } from "./todoReducer";
 import { ScreenContext } from "../screen/screenContext";
 
 import { ADD_TODO, CLEAR_ERROR, HIDE_LOADER, REMOVE_TODO, SHOW_ERROR, SHOW_LOADER, UPDATE_TODO } from "../types";
+import { REACT_APP_BASE_URL } from "../../../constants";
 
 
 export const TodoState = ({ children }) => {
@@ -17,7 +18,16 @@ export const TodoState = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { changeScreen } = useContext(ScreenContext);
 
-  const addTodo = title => dispatch({ type: ADD_TODO, title });
+  const addTodo = async title => {
+    const response = await fetch(`${REACT_APP_BASE_URL}/todos.json`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title })
+    });
+    const data = await response.json();
+    console.log(data)
+    dispatch({ type: ADD_TODO, title, id: data.name });
+  };
 
   const removeTodo = id => {
     const selectedTodo = state.todos.find(todo => todo.id === id);

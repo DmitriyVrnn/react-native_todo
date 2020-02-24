@@ -4,11 +4,8 @@ import {
 
 
 const handlers = {
-  [ADD_TODO]: (state, { title }) => ({
-    ...state, todos: [...state.todos, {
-      id: Date.now().toString(),
-      title
-    }]
+  [ADD_TODO]: (state, { title, id }) => ({
+    ...state, todos: [...state.todos, { id, title }]
   }),
   [REMOVE_TODO]: (state, { id }) => ({
     ...state, todos: state.todos.filter(todo => todo.id !== id)
